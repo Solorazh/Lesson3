@@ -1,22 +1,22 @@
 <?php
-
-    echo 'Фамилия: ';
+echo 'Фамилия: ';
 $surname = trim(fgets(STDIN));
-    echo 'Имя: ';
+echo 'Имя: ';
 $name = trim(fgets(STDIN));
-    echo 'Отчество: ';
+echo 'Отчество: ';
 $patronymic = trim(fgets(STDIN));
-    echo PHP_EOL;
+echo PHP_EOL;
 
-$nameArray = array(
-    "surname" => mb_convert_case($surname, MB_CASE_TITLE, "UTF-8"),
-    "name" => mb_convert_case($name, MB_CASE_TITLE, "UTF-8"),
-    "patronymic" => mb_convert_case($patronymic, MB_CASE_TITLE, "UTF-8"),
-);
+echo "Полное имя: " . $fullname = mb_ucfirst($surname) . ' ' . mb_ucfirst($name) . ' ' . mb_ucfirst($patronymic). PHP_EOL;
+echo  "Аббревиатура: ".$fio = mb_fio($surname) . '.' . mb_fio($name) . '.' . mb_fio($patronymic). '.'. PHP_EOL;
+echo  "Фамилия и инициалы: " .$surnameAndInitials = mb_ucfirst($surname). ' ' .mb_fio($name) . '.' . mb_fio($patronymic). '.'. PHP_EOL;
 
-$fullName = $nameArray["surname"] . ' ' . $nameArray["name"] . ' ' . $nameArray["patronymic"];
-$surnameAndInitials = $nameArray["surname"] . ' ' . $nameArray["name"][0]  . '.' . $nameArray["patronymic"][0] . '.';
-$fio = $nameArray["surname"][0] . $nameArray["name"][0]  . $nameArray["patronymic"][0];
-    echo "Полное имя: " . $fullName . PHP_EOL;
-    echo "Фамилия и инициалы: " . $surnameAndInitials . PHP_EOL;
-    echo "Аббревиатура: " . $fio . PHP_EOL;
+function mb_ucfirst($text) {
+    $text = mb_strtolower($text);
+    return mb_strtoupper(mb_substr($text, 0, 1)) . mb_substr($text, 1);
+}
+function mb_fio($text_2) {
+    $text_2 = mb_strtolower($text_2);
+    return mb_strtoupper(mb_substr($text_2, 0, 1));
+}
+exit();
